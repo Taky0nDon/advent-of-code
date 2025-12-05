@@ -1,0 +1,20 @@
+987654321111111 <- bank0
+811111111111119 <- bank1
+234234234234278 <- bank2
+818181911112111 <- bank3
+
+Must turn on TWO batteries
+def sum_bank(bank):
+    joltage = sum(b for b in bank if b is on)
+    return joltage
+
+Find largest possible joltage any bank can produce
+Return the sum.
+sum(sum_bank(bank) for bank in banks)
+
+use a min heap of size k to iterate over the input.
+the min heap has the property:
+    - any parent node is <= to all its children
+
+      look through remaining batteries and compare to min
+      if it's larger, pop the min and insert it
