@@ -5,6 +5,7 @@ class TrinaryTreeNode():
         self.right = right
         self.straight = None
         self.left = left
+        self.timelines = None
 
     def pre_order_traversal(self):
         if self.left is not None:
@@ -26,7 +27,6 @@ class TrinaryTreeNode():
         return self.routes
 
     def __repr__(self):
-        print('hi')
         if self is None:
             return ""
         the_string = [f"{' '*30}{self.val}"]
