@@ -45,16 +45,10 @@ def build_graph(rows: list[str]) -> GraphNode:
                 splits += 1
                 left_pos = (row, col - 1)
                 right_pos = (row, col + 1)
-                if left_pos not in node_cache:
-                    node_cache[left_pos] = GraphNode(left_pos)
-                if right_pos not in node_cache:
-                    node_cache[right_pos] = GraphNode(right_pos)
-                node.links.add(node_cache[left_pos])
-                node.links.add(node_cache[right_pos])
+                node.links.add(GraphNode(left_pos))
+                node.links.add(GraphNode(right_pos))
             else:
-                if (row, col) not in node_cache:
-                    node_cache[(row, col)] = GraphNode((row, col))
-                node.links.add(node_cache[(row, col)])
+                node.links.add(GraphNode((row, col)))
 
             for other_node in node.links:
                 beams.append(other_node)

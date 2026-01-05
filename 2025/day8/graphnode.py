@@ -1,9 +1,21 @@
 class GraphNode:
+    node_cache = {}
+    def __new__(cls, *args, **kwargs):
+        coordinates = args[0]
+        print("in __new__")
+        print(f"args: {args}, kwargs: {kwargs}")
+        if coordinates in cls.node_cache:
+            print(f"{coordinates} already exists!")
+            return cls.node_cache[args[0]]
+        print("point not graphed yet...")
+        cls.node_cache[args[0]] = super().__new__(cls)
+        return cls.node_cache[args[0]]
+
     def __init__(self, val):
+        print("in __init__")
         self.val = val
         self.links = set()
         self.timelines = 0
-        self.id = self.__hash__()
 
     def __eq__(self, other):
         return self.val == other.val
@@ -14,7 +26,7 @@ class GraphNode:
     def __repr__(self):
         value = f"{self.val}"
         children = f"{" ".join([str(l.val) for l in self.links])}"
-        return f"node: {self.id} val: {value} links: {children}\n and I live at {id(self)}"
+        return f"val: {value} links: {children}\n and I live at {id(self)}"
 
     def add_link(self, other_node):
         self.links.add(other_node)
